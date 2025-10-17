@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <!-- Google tag (gtag.js) -->
+ <script async src="https://www.googletagmanager.com/gtag/js?id=G-M89WZD35SS"></script>
+ <script>
+  window.dataLayer = window.dataLayer || [];
+  
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+  
+  gtag('config', 'G-M89WZD35SS');
+ </script>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>OBOT OBO - Portfolio</title>
+ <link rel="icon" href="/vault/img/profile_photo.png" type="image/png">
+ <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+ <link rel="stylesheet" href="/style.css" type="text/css" media="all" />
+</head>
+
+<body id="top">
+ <div class="container">
+  
+  <div class="cover-photo-container">
+   <div class="cover-photo"></div>
+  </div>
+  <canvas id="starfield"></canvas>
+  <!--START HERE-->
+<section id="thank-you">
+  <div class="thank-you-box">
+    <h1>✅ Thank You!</h1>
+  <!-- Replace the <p> tag in your success.html with this -->
+<p>Your payment was successful and your CV order has been received!<br />
+ I've started working on your document. You will receive a confirmation email shortly.<br />
+ Keep an eye on your inbox (and spam folder) for updates from oboobotenefiok@gmail.com as well.</p>
+    <a href="/">⬅ Back to Home</a>
+  </div>
+  
+</section>
+
+<style>
+#thank-you {
+  display: flex;
+  justify-content: center;
+  min-height: 80vh;
+  text-align: center;
+  color: #f1f1f1;
+  font-family: 'Inter', sans-serif;
+  margin-top: 0rem;
+}
+
+#thank-you .thank-you-box {
+  max-width: 600px;
+  padding: 2rem;
+  border: 1px solid #333;
+  border-radius: 12px;
+  box-shadow: 0 0 30px rgba(0, 200, 150, 0.15);
+  animation: fadeIn 1s ease-in-out;
+  margin-top: 0rem;
+}
+
+#thank-you h1 {
+  color: brown;
+  margin-bottom: 1rem;
+}
+
+#thank-you p {
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+#thank-you a {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background: brown;
+  color: #000;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+#thank-you a:hover {
+  background: brown;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+ </div>
+   <!-- Hamburger -->
+   <button id="hamburger" style="
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    font-size: 28px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+    color:white
+  ">
+    ☰
+   </button>
+   
+   <!-- Dropdown Menu -->
+   <div id="menu" style="
+    display: none;
+    position: fixed;
+    top: 60px;
+    right: 15px;
+    background: rgba(0,0,0,0.8);
+    padding: 10px;
+    border-radius: 6px;
+    z-index: 999;
+  ">
+    <ul style="list-style: none; margin: 0; padding: 0;">
+    
+     <li><a href="/clicktoearn" style="color: white; text-decoration: none; display: block; padding: 8px;">Click To Earn</a></li>
+     <li><a href="/calculator/index.html" style="color: white; text-decoration: none; display: block; padding: 8px;">Fx Calculator</a></li>
+   
+    </ul>
+   </div>
+   <script>
+  // Clear saved data only after successful Netlify redirect
+  localStorage.clear();
+</script>
+
+ <script src="/script.js" type="text/javascript" charset="utf-8"></script>
+</body>
+
+</html>

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <!-- Google tag (gtag.js) -->
+ <script async src="https://www.googletagmanager.com/gtag/js?id=G-M89WZD35SS"></script>
+ <script>
+  window.dataLayer = window.dataLayer || [];
+  
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+  
+  gtag('config', 'G-M89WZD35SS');
+ </script>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>OBOT OBO - Portfolio</title>
+ <link rel="icon" href="/vault/img/profile_photo.png" type="image/png">
+ <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+ <link rel="stylesheet" href="/style.css" type="text/css" media="all" />
+ <link rel="stylesheet" href="style.css" type="text/css" media="all" />
+</head>
+
+<body id="top">
+ <div class="container">
+  
+  <div class="cover-photo-container">
+   <div class="cover-photo"></div>
+  </div>
+  <canvas id="starfield"></canvas>
+  <!--START HERE-->
+  <!-- =================== RÉSUMÉ / CV CHECKLIST FORM =================== -->
+  <div>
+   <center>
+    <h3> 4-Step CV(Résumé) Request Form</h3>
+    <p style="color:red">If you feel uncertain, you can leave a blank field - we'll discuss further during our conversation. Some fields are required!</p>
+   </center>
+  </div>
+  <form name="resume-checklist" method="POST" id="form" data-netlify="true" enctype="multipart/form-data" class="resume-form" action="/cv/form/success.html" netlify>
+   <input type="hidden" name="form-name" value="resume-checklist" />
+   <div id="referralWrapper" style="display:none;">
+    <label for="referralField">Referral Code:</label>
+    <input type="text" name="referral" id="referralField" readonly>
+   </div>
+   <!-- Step 1: Sections 1–3 -->
+   <div class="form-step active">
+    <h2>Step 1: Personal Information, Profile & Work Experience</h2>
+    
+    <!-- Section 1 -->
+    <label for="full-name">Full Name</label>
+    <input placeholder="Your Three Names e.g Obot Enefiok Obo" id="full-name" type="text" name="full-name" required>
+    
+    <label for="email">Professional Email Address</label>
+    <input placeholder="e.g oboobotenefiok@gmail.com" id="email" type="email" name="email" required>
+    
+    <!-- Phone Input Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    
+    <!-- Form Fields -->
+    <label for="phone">Professional Phone Number:</label>
+    <input id="phone" type="tel" name="phone"><br><br>
+    <!-- Section 9 -->
+    <label for="reach">Kindly provide the WhatsApp Number where I can get back to you with ease.</label>
+    <input placeholder="Include CountryCode" id="reach" type="tel" name="reach"><br><br> <label for="countryInput">Country:</label>
+    <input type="text" id="countryInput" name="country_name" placeholder="Type country...">
+    <input type="hidden" id="countryCode" name="country_code">
+    <ul id="countryList" style="list-style:none; padding:0; margin:0; border:1px solid #ccc; max-height:150px; overflow-y:auto; display:none;"></ul><br><br>
+    
+    <label for="cityInput">City:</label>
+    <input type="text" id="cityInput" name="city" placeholder="Type city...">
+    <ul id="cityList" style="list-style:none; padding:0; margin:0; border:1px solid #ccc; max-height:150px; overflow-y:auto; display:none;"></ul>
+    
+    
+    
+    <label for="portfolio">Portfolio / Social Media / LinkedIn / Personal Website e.t.c</label>
+    <input placeholder="e.g https://oboobotenefiok.netlify.app" id="portfolio" type="url" name="portfolio" pattern="https?://.+" title="Please include http:// or https:// in the URL.">
+    
+    <!-- Section 2 -->
+    <label for="summary">Professional Summary</label>
+    <textarea placeholder="3 - 5 Sentences" id="summary" name="summary"></textarea>
+    
+    <label for="career-highlights">Career Highlights</label>
+    <textarea placeholder="2-3 achievements" id="career-highlights" name="career-highlights"></textarea>
+    
+    <!-- Section 3 -->
+    <label for="work-experience">Work Experience</label>
+    <textarea placeholder="For each role include:
+    1. Company
+    2. Job Title
+    3. Start Date & End Date
+    4. 3–5 impact-focused bullet points with measurable outcomes " id="work-experience" name="work-experience"></textarea>
+    <label for="work-experience-file">Upload A Professional Photo of Yourself. <br /> <small>Make it look your best 😊</small> </label>
+    <input id="work-experience-file" type="file" name="work-experience-file">
+    
+    
+   </div>
+   
+   <!-- Step 2: Sections 4–6 -->
+   <div class="form-step">
+    <h2>Step 2: Skills, Education & Additional Experience</h2>
+    
+    <!-- Section 4 -->
+    <label for="core-skills">Core Skills / Competencies</label>
+    <input id="core-skills" type="text" name="core-skills">
+    
+    <label for="tools">Technical Proficiency / Tools</label>
+    <input id="tools" type="text" name="tools">
+    
+    <!-- Section 5 -->
+    <label for="education">Education</label>
+    <textarea placeholder="For each, include:
+    1.Degree
+    2.Schools
+    3.Graduation
+    4.Years
+    5.Coursework & Honors" id="education" name="education"></textarea>
+    
+    <label for="certifications">Certifications / Training</label>
+    <textarea placeholder="e.g CFA, PMP, AWS, licenses, workshops, etc." id="certifications" name="certifications"></textarea>
+    
+    <!-- Section 6 -->
+    <label for="career-objective">Career Objective</label>
+    <textarea id="career-objective" name="career-objective"></textarea>
+    
+    <label for="volunteer">Volunteer Experience</label>
+    <textarea placeholder="(Optional)" id="volunteer" name="volunteer"></textarea>
+    
+    <label for="military">Military Service</label>
+    <textarea placeholder="(e.g NYSC If applicable)" id="military" name="military"></textarea>
+    
+    <label for="projects">Projects / Case Studies</label>
+    <textarea placeholder="Portfolio projects, research, strategies" id="projects" name="projects"></textarea>
+    
+    <label for="development">Professional Development</label>
+    <textarea placeholder="e.g Conferences, seminars, speaking engagements, ongoing learning" id="development" name="development"></textarea>
+   </div>
+   
+   <!-- Step 3: Sections 7–9 -->
+   <div class="form-step">
+    <h2>Step 3: Achievements, Languages & References</h2>
+    
+    <!-- Section 7 -->
+    <label for="awards">Awards & Recognitions</label>
+    <textarea id="awards" name="awards"></textarea>
+    
+    <label for="publications">Publications / Research</label>
+    <textarea id="publications" name="publications"></textarea>
+    
+    <label for="affiliations">Professional Affiliations</label>
+    <textarea id="affiliations" name="affiliations"></textarea>
+    
+    <!-- Section 8 -->
+    <label for="spoken-languages">Spoken Languages</label>
+    <input placeholder="e.g British English" id="spoken-languages" type="text" name="spoken-languages">
+    
+    <label for="programming-languages">Programming Languages</label>
+    <input placeholder="(If relevant)" id="programming-languages" type="text" name="programming-languages">
+    
+    <label for="hobbies">Hobbies & Interests</label>
+    <input id="hobbies" type="text" name="hobbies">
+    
+    <!-- Section 9 -->
+    <label for="reference-preference">Reference Preference</label>
+    <select name="reference-preference" id="reference-preference">
+     <option value="available-upon-request">References available upon request</option>
+     <option value="provide-details">Provide reference details</option>
+    </select>
+    
+    <label id="reference-details-label" for="references">Reference Details</label>
+    <textarea id="references" name="references" placeholder="Include:
+    1.Name 
+    2.Title
+    3.Company
+    4.Relationship
+    5.Phone Number ( Include Country Code ) & Email 
+"></textarea>
+   </div>
+   <label for=""></label>
+   <!-- Step 4: Pricing & Payment -->
+   <div class="form-step">
+    <h2>Step 4: Pricing & Payment</h2>
+    
+    <p >Please select your preferred package. You will be redirected to a secure payment page. </p>
+    
+    <label>
+     <input type="radio" name="pricing-option" value="basic" data-amount="15000000" required> 
+     <span></span> Basic Package - $100.00 </label>
+    <label>
+     <input type="radio" name="pricing-option" value="standard" data-amount="22500000" required> <!-- $150 * 100 -->
+     <span></span> Standard Package - $150.00 </label>
+    <label>
+     <input type="radio" name="pricing-option" value="premium" data-amount="37500000" required>
+     <span></span> Premium Package - $250.00
+    </label>
+    <!--- Payment Button --->
+    <button type="button" id="paystack-pay-btn" class="submit-btn" style="margin-top: 2rem; width: 100%; background: #0A5CFF;" disabled>
+     Proceed to Secure Payment
+    </button>
+    
+    <p class="form-note">
+     ⚠️ Payment will be processed in your local currency but will display in <span style="color:green">NGN</span> on the next page. <br /> Use the Card Payment Option if you're outside Nigeria.
+    
+    </p>
+   </div>
+   
+   
+   <!-- Navigation Buttons -->
+   <div class="form-navigation">
+    <button type="button" class="prev-btn">Previous</button>
+    <button type="button" class="next-btn">Next</button>
+    <button type="submit" class="submit-btn">Check-Out</button>
+   </div>
+  </form>
+  
+  
+  
+  
+  
+  <!-- =================== JS LOGIC =================== -->
+  
+  
+  
+  <!-- =================== END FORM =================== -->
+ </div>
+ <!-- Payment Status Modal -->
+ <div id="payment-status" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 10000; color: white; justify-content: center; align-items: center; flex-direction: column; text-align: center;">
+  <div style="background: #111; padding: 2rem; border-radius: 12px; max-width: 500px; border: 1px solid #333;">
+   <div id="status-icon" style="font-size: 3rem; margin-bottom: 1rem;">⏳</div>
+   <h3 id="status-title">Processing Your Order</h3>
+   <p id="status-message">Please wait while we confirm your payment...</p>
+   <div id="status-details" style="margin-top: 1rem; font-size: 0.9rem; color: #ccc;"></div>
+  </div>
+ </div>
+ <!-- Hamburger -->
+ <button id="hamburger" style="
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    font-size: 28px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+    color:white
+  ">
+  ☰
+ </button>
+ 
+ <!-- Dropdown Menu -->
+ <div id="menu" style="
+    display: none;
+    position: fixed;
+    top: 60px;
+    right: 15px;
+    background: rgba(0,0,0,0.8);
+    padding: 10px;
+    border-radius: 6px;
+    z-index: 999;
+  ">
+  <ul style="list-style: none; margin: 0; padding: 0;">
+   <li><a href="/" style="color: white; text-decoration: none; display: block; padding: 8px;">Home</a></li>
+   <li><a href="/clicktoearn" style="color: white; text-decoration: none; display: block; padding: 8px;">Click To Earn</a></li>
+   <li><a href="/calculator/index.html" style="color: white; text-decoration: none; display: block; padding: 8px;">Fx Calculator</a></li>
+   
+   
+  </ul>
+ </div>
+ 
+ <script src="script.js" type="text/javascript" charset="utf-8"></script>
+ <script src="/script.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script>
+// Wait for window.load to ensure EVERYTHING is ready
+window.addEventListener('load', function() {
+    console.log('Page fully loaded, initializing Paystack...');
+    
+    // --- Paystack Integration ---
+    const paymentButton = document.getElementById('paystack-pay-btn');
+    
+    if (!paymentButton) {
+        console.error('❌ Paystack button not found!');
+        return;
+    }
+    
+    console.log('Paystack button found:', paymentButton);
+    
+    const pricingOptions = document.querySelectorAll('input[name="pricing-option"]');
+    const statusModal = document.getElementById('payment-status');
+    const statusIcon = document.getElementById('status-icon');
+    const statusTitle = document.getElementById('status-title');
+    const statusMessage = document.getElementById('status-message');
+    const statusDetails = document.getElementById('status-details');
+
+    // Referral handling
+    const urlParams = new URLSearchParams(window.location.search);
+    let refCode = urlParams.get('ref') || localStorage.getItem('referralCode') || '';
+    if (refCode) {
+        const referralField = document.getElementById("referralField");
+        const referralWrapper = document.getElementById("referralWrapper");
+        if (referralField && referralWrapper) {
+            referralField.value = refCode;
+            referralWrapper.style.display = "block";
+            localStorage.setItem("referralCode", refCode);
+        }
+    }
+
+    // Enable payment button when package is selected
+    pricingOptions.forEach(option => {
+        option.addEventListener('change', () => {
+            console.log('Package selected:', option.value);
+            paymentButton.disabled = false;
+            paymentButton.textContent = `Proceed to Pay $${(option.getAttribute('data-amount') / 100 / 1500).toFixed(2)} Securely`;
+        });
+    });
+
+    paymentButton.addEventListener('click', payWithPaystack);
+
+    function showStatus(icon, title, message, details = '') {
+        if (statusIcon) statusIcon.textContent = icon;
+        if (statusTitle) statusTitle.textContent = title;
+        if (statusMessage) statusMessage.textContent = message;
+        if (statusDetails) statusDetails.textContent = details;
+        if (statusModal) statusModal.style.display = 'flex';
+    }
+
+    function hideStatus() {
+        if (statusModal) statusModal.style.display = 'none';
+    }
+
+    function payWithPaystack() {
+        console.log('Pay button clicked!');
+        
+        const selectedOption = document.querySelector('input[name="pricing-option"]:checked');
+        if (!selectedOption) {
+            alert('Please select a package.');
+            return;
+        }
+
+        const amountInCents = selectedOption.getAttribute('data-amount');
+        const packageName = selectedOption.value;
+        const amountDollars = (amountInCents / 100 / 1500).toFixed(2);
+        const form = document.getElementById('form');
+        
+        if (!form) {
+            console.error('Form not found!');
+            return;
+        }
+        
+        const formData = new FormData(form);
+        const email = formData.get('email');
+
+        if (!email) {
+            alert('Please enter your email address.');
+            return;
+        }
+
+        // Show initial status
+        showStatus('⏳', 'Redirecting to Payment', `Taking you to secure payment page for $${amountDollars}...`, 'Do not close this window.');
+
+        // Prepare metadata
+        const customFields = [];
+        for (let [key, value] of formData.entries()) {
+            customFields.push({ display_name: key, variable_name: key, value: value });
+        }
+        if (refCode) {
+            customFields.push({ display_name: "referral_code", variable_name: "referral_code", value: refCode });
+        }
+
+        console.log('Initializing Paystack with:', { email, amount: amountInCents, refCode });
+        
+        const handler = PaystackPop.setup({
+            key: 'pk_live_f4dcefadc4a249abdc6b9ad184e4fa8c77b3095b',
+            email: email,
+            amount: amountInCents,
+            currency: 'NGN',
+            ref: 'CV_' + Math.floor((Math.random() * 1000000000) + 1),
+            metadata: { custom_fields: customFields },
+            
+            callback: function(response) {
+                console.log('Payment successful!', response);
+                // PAYMENT SUCCESSFUL
+                showStatus('✅', 'Payment Successful!', 'Thank you! Your payment has been confirmed.', 'Finalizing your order...');
+
+                // Add payment details to form
+                const referenceInput = document.createElement('input');
+                referenceInput.type = 'hidden';
+                referenceInput.name = 'paystack_reference';
+                referenceInput.value = response.reference;
+
+                const packageInput = document.createElement('input');
+                packageInput.type = 'hidden';
+                packageInput.name = 'package_selected';
+                packageInput.value = packageName;
+
+                form.appendChild(referenceInput);
+                form.appendChild(packageInput);
+
+                localStorage.removeItem('referralCode');
+
+                // Brief delay so user can see the success message
+                setTimeout(() => {
+                    showStatus('📨', 'Submitting Your Information', 'Saving your CV details and payment information...', 'You will be redirected shortly.');
+                    
+                    setTimeout(() => {
+                        console.log('Submitting form...');
+                        // Create a new form submission without the overlay handler
+                        const newForm = document.createElement('form');
+                        newForm.method = 'POST';
+                        newForm.action = form.action;
+                        newForm.style.display = 'none';
+                        
+                        // Copy all existing form data
+                        for (let [key, value] of formData.entries()) {
+                            const input = document.createElement('input');
+                            input.type = 'hidden';
+                            input.name = key;
+                            input.value = value;
+                            newForm.appendChild(input);
+                        }
+                        
+                        // Add payment references
+                        newForm.appendChild(referenceInput.cloneNode(true));
+                        newForm.appendChild(packageInput.cloneNode(true));
+                        
+                        document.body.appendChild(newForm);
+                        newForm.submit();
+                    }, 1500);
+                }, 2000);
+            },
+            
+            onClose: function() {
+                console.log('Payment window closed');
+                hideStatus();
+                alert('You closed the payment window. Your order is not confirmed. You can try again whenever you are ready.');
+            }
+        });
+
+        // Short delay before opening Paystack
+        setTimeout(() => {
+            console.log('Opening Paystack iframe...');
+            handler.openIframe();
+        }, 1000);
+    }
+    
+    console.log('Paystack integration loaded successfully. Pricing options:', pricingOptions.length);
+});
+</script>
+</body>
+
+</html>

@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <!-- Google tag (gtag.js) -->
+ <script async src="https://www.googletagmanager.com/gtag/js?id=G-M89WZD35SS"></script>
+ <script>
+  window.dataLayer = window.dataLayer || [];
+  
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+  
+  gtag('config', 'G-M89WZD35SS');
+ </script>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>OBOT OBO - Portfolio</title>
+ <link rel="icon" href="/vault/img/profile_photo.png" type="image/png">
+ <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+ <link rel="stylesheet" href="/style.css" type="text/css" media="all" />
+</head>
+
+<body id="top">
+ <div class="container">
+  
+  <div class="cover-photo-container">
+   <div class="cover-photo"></div>
+  </div>
+  <canvas id="starfield"></canvas>
+  <!--START HERE-->
+  <!-- START FX CALCULATOR (Dark-only, no page background styles) -->
+<section id="fx-calculator" aria-label="FX Calculator" style="max-width:900px; margin: 1.5rem auto; padding: 1rem;">
+  <style>
+    /* FX Calculator — scoped dark styles */
+    #fx-calculator { color:#fff; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
+    #fx-calculator h2 { margin:0 0 0.5rem 0; font-size:1.3rem; font-weight:600; color:#fff; }
+    #fx-calculator p.lead { margin:0 0 1rem 0; color:#d0d0d0; font-size:0.95rem; }
+
+    .fx-grid { display:grid; grid-template-columns: 1fr; gap:0.75rem; }
+    @media(min-width:800px){ .fx-grid { grid-template-columns: 1fr 1fr; } }
+
+    .field { display:flex; flex-direction:column; gap:0.35rem; }
+    .field label { font-weight:600; font-size:0.9rem; color:#fff; }
+    .field input[type="number"],
+    .field input[type="text"],
+    .field input[type="date"],
+    .field select,
+    .field textarea { 
+      padding:0.6rem 0.75rem; 
+      border-radius:8px; 
+      border:1px solid #333; 
+      background:#0b0b0b; /* dark field background */
+      color:#fff; 
+      font-size:0.95rem; 
+      box-shadow: none;
+    }
+    .field input::placeholder,
+    .field textarea::placeholder { color:#7d7d7d; }
+
+    .small { font-size:0.85rem; color:#bdbdbd; margin-top:0.25rem; }
+
+    .btn { 
+      display:inline-block; 
+      padding:0.7rem 1rem; 
+      border-radius:8px; 
+      border:1px solid #1f6feb; 
+      background:#111; 
+      color:#fff; 
+      cursor:pointer; 
+      font-weight:700;
+    }
+    .btn.ghost { border-color:#444; opacity:0.95; }
+    .btn[disabled] { opacity:0.6; cursor:not-allowed; }
+
+    .panel { padding:0.9rem; border-radius:10px; border:1px solid #222; }
+    .row { display:flex; gap:0.6rem; align-items:center; flex-wrap:wrap; }
+
+    .results { margin-top:0.75rem; color:#fff; font-size:0.95rem; line-height:1.45; }
+    .error { color:#ff8b8b; font-weight:700; }
+    .warning { color:#ffd98a; font-weight:700; }
+    .rate-source { font-size:0.8rem; color:#a8a8a8; margin-top:0.5rem; }
+
+    .input-invalid { outline: 2px solid rgba(255,80,80,0.12); border-color:#5a1f1f; }
+    .input-valid { outline: 2px solid rgba(76,175,80,0.06); }
+
+    .section-title { margin-top:1rem; margin-bottom:0.5rem; font-weight:700; color:#fff; }
+    /* small helpers */
+    .muted { color:#bdbdbd; font-size:0.88rem; }
+    textarea { min-height:90px; }
+  </style>
+
+  <h2>FX Position & Margin Calculator (₦)</h2>
+  <p class="lead">Calculate lot size, risk, and required margin. Rates update automatically (cached for 12 hours).</p>
+
+  <div class="panel">
+    <div class="fx-grid">
+
+      <!-- Left: Risk-based calculation -->
+      <div>
+        <div class="section-title">Risk-based Calculator</div>
+        <div class="field">
+          <label for="pair">Currency Pair</label>
+          <select id="pair" name="pair" aria-label="Currency pair">
+            <option>EUR/USD</option>
+            <option>GBP/USD</option>
+            <option>XAU/USD</option>
+            <option>XAG/USD</option>
+            <option>USD/JPY</option>
+            <option>AUD/USD</option>
+            <option>USD/CAD</option>
+            <option>NZD/USD</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="balance">Account Balance (₦)</label>
+          <input id="balance" type="number" min="0" step="0.01" placeholder="e.g. 250000" />
+          <div id="balanceError" class="small error" style="display:none;">Balance must be greater than 0</div>
+        </div>
+
+        <div class="row" style="margin-top:0.6rem;">
+          <div style="flex:1" class="field">
+            <label for="riskPercent">Risk (%)</label>
+            <input id="riskPercent" type="number" min="0.01" max="100" step="0.01" placeholder="e.g. 1" />
+            <div id="riskPercentError" class="small error" style="display:none;">Risk must be between 0.01 and 100</div>
+          </div>
+
+          <div style="flex:1" class="field">
+            <label for="stopLoss">Stop Loss (pips)</label>
+            <input id="stopLoss" type="number" min="0.1" step="0.1" placeholder="e.g. 30" />
+            <div id="stopLossError" class="small error" style="display:none;">Stop Loss must be between 0.1 and 1000</div>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top:0.6rem;">
+          <div style="flex:1" class="field">
+            <label for="lotLeverage">Leverage</label>
+            <input id="lotLeverage" type="number" min="1" step="1" value="100" />
+            <div id="lotLeverageError" class="small error" style="display:none;">Leverage must be at least 1</div>
+          </div>
+
+          <div style="flex:1" class="field">
+            <label>&nbsp;</label>
+            <button id="calcButton" class="btn">Calculate</button>
+          </div>
+        </div>
+
+        <div id="results" class="results" aria-live="polite"></div>
+      </div>
+
+      <!-- Right: Reverse / Margin-based calculation -->
+      <div>
+        <div class="section-title">Margin-based (Max Lot)</div>
+
+        <div class="field">
+          <label for="reversePair">Base Currency (for margin)</label>
+          <select id="reversePair" name="reversePair" aria-label="Reverse pair base">
+            <option>EUR</option>
+            <option>GBP</option>
+            <option>XAU</option>
+            <option>XAG</option>
+            <option>USD</option>
+            <option>AUD</option>
+            <option>CAD</option>
+            <option>NZD</option>
+            <option>JPY</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="marginAvailable">Available Margin (₦)</label>
+          <input id="marginAvailable" type="number" min="0" step="0.01" placeholder="e.g. 50000" />
+          <div id="marginAvailableError" class="small error" style="display:none;">Margin must be greater than 0</div>
+        </div>
+
+        <div class="row" style="margin-top:0.6rem;">
+          <div style="flex:1" class="field">
+            <label for="reverseLeverage">Leverage</label>
+            <input id="reverseLeverage" type="number" min="1" step="1" value="100" />
+            <div id="reverseLeverageError" class="small error" style="display:none;">Leverage must be at least 1</div>
+          </div>
+
+          <div style="flex:1; align-self:end;" class="field">
+            <label>&nbsp;</label>
+            <button id="reverseCalcButton" class="btn ghost">Reverse Calculate</button>
+          </div>
+        </div>
+
+        <div id="reverseResults" class="results" aria-live="polite"></div>
+      </div>
+
+    </div>
+
+    <div class="rate-source" id="rateSource"><small>FX Source: offline fallback</small></div>
+  </div>
+</section>
+
+<script>
+  /* Scoped FX calculator JS (dark-only). Paste this block directly. */
+  (function () {
+    // fallback rates (NGN)
+    const fallbackRates = {
+      "USD/NGN": 1575,
+      "EUR/NGN": 1825,
+      "GBP/NGN": 2135,
+      "XAU/NGN": 4200000,
+      "XAG/NGN": 48000,
+      "JPY/NGN": 10,
+      "AUD/NGN": 1050,
+      "CAD/NGN": 1155,
+      "NZD/NGN": 950
+    };
+
+    const pipValuesUSD = {
+      "EUR/USD": 10,
+      "GBP/USD": 10,
+      "XAU/USD": 1,
+      "XAG/USD": 0.5,
+      "USD/JPY": 9.1,
+      "AUD/USD": 10,
+      "USD/CAD": 10,
+      "NZD/USD": 10,
+      "EUR/GBP": 12.1,
+      "EUR/JPY": 9.1,
+      "GBP/JPY": 9.1
+    };
+
+    let rates = { ...fallbackRates };
+
+    const cacheKey = 'fx_rates_cache_v1';
+    const cacheTimeKey = cacheKey + '_time';
+    const cacheDuration = 12 * 60 * 60 * 1000; // 12 hours
+
+    function showElement(id, show) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.style.display = show ? 'block' : 'none';
+    }
+
+    function validateInput(input, min, max, errorElement) {
+      const errorDiv = document.getElementById(errorElement);
+      if (!input) return false;
+      const value = Number(input.value);
+      if (isNaN(value) || value <= (min || 0) || (max && value > max)) {
+        input.classList.add('input-invalid');
+        input.classList.remove('input-valid');
+        if (errorDiv) errorDiv.style.display = 'block';
+        return false;
+      } else {
+        input.classList.remove('input-invalid');
+        input.classList.add('input-valid');
+        if (errorDiv) errorDiv.style.display = 'none';
+        return true;
+      }
+    }
+
+    async function fetchWithTimeout(url, timeout = 2000) {
+      return Promise.race([
+        fetch(url),
+        new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), timeout))
+      ]);
+    }
+
+    function displayRateSource(source) {
+      const el = document.getElementById('rateSource');
+      if (el) el.innerHTML = `<small>FX Source: ${source}</small>`;
+    }
+
+    async function fetchLiveRates() {
+      const now = Date.now();
+      try {
+        const cached = localStorage.getItem(cacheKey);
+        const cachedTime = localStorage.getItem(cacheTimeKey);
+        if (cached && cachedTime && (now - Number(cachedTime) < cacheDuration)) {
+          rates = JSON.parse(cached);
+          displayRateSource(`Cached rates (${new Date(Number(cachedTime)).toLocaleString()})`);
+          return;
+        }
+
+        // exchangerate.host for forex, metals-api for gold/silver
+        const forexUrl = 'https://api.exchangerate.host/latest?base=USD&symbols=NGN,EUR,GBP,JPY,AUD,CAD,NZD';
+        const metalsApiKey = 'YOUR_METALS_API_KEY'; // <-- replace if you have one
+        const metalsUrl = `https://metals-api.com/api/latest?access_key=${metalsApiKey}&base=USD&symbols=XAU,XAG`;
+
+        const [forexRes, metalsRes] = await Promise.all([
+          fetchWithTimeout(forexUrl, 2500).catch(e => { throw new Error('Forex fetch failed'); }),
+          fetchWithTimeout(metalsUrl, 3000).catch(e => { throw new Error('Metals fetch failed'); })
+        ]);
+
+        const forexData = await forexRes.json();
+        const metalsData = await metalsRes.json();
+
+        if (!forexData || !forexData.rates || !forexData.rates.NGN) throw new Error('Invalid forex response');
+        if (!metalsData || !metalsData.rates) throw new Error('Invalid metals response');
+
+        const ngn = forexData.rates.NGN;
+        rates = {
+          "USD/NGN": ngn,
+          "EUR/NGN": ngn * forexData.rates.EUR,
+          "GBP/NGN": ngn * forexData.rates.GBP,
+          "JPY/NGN": ngn / forexData.rates.JPY,
+          "AUD/NGN": ngn * forexData.rates.AUD,
+          "CAD/NGN": ngn * forexData.rates.CAD,
+          "NZD/NGN": ngn * forexData.rates.NZD,
+          "XAU/NGN": (metalsData.rates && metalsData.rates.XAU) ? metalsData.rates.XAU * ngn : fallbackRates["XAU/NGN"],
+          "XAG/NGN": (metalsData.rates && metalsData.rates.XAG) ? metalsData.rates.XAG * ngn : fallbackRates["XAG/NGN"]
+        };
+
+        localStorage.setItem(cacheKey, JSON.stringify(rates));
+        localStorage.setItem(cacheTimeKey, String(now));
+        displayRateSource(`exchangerate.host & metals-api (${new Date().toLocaleString()})`);
+      } catch (err) {
+        // fallback
+        console.warn('Using fallback rates:', err);
+        rates = { ...fallbackRates };
+        displayRateSource(`Offline fallback (${new Date().toLocaleString()})`);
+      }
+    }
+
+    // Calculation logic (same semantics as original)
+    async function calculate() {
+      const button = document.getElementById('calcButton');
+      const resultsDiv = document.getElementById('results');
+      resultsDiv.innerHTML = '';
+      button.disabled = true;
+      button.textContent = 'Calculating...';
+
+      // get inputs
+      const balanceEl = document.getElementById('balance');
+      const riskEl = document.getElementById('riskPercent');
+      const slEl = document.getElementById('stopLoss');
+      const levEl = document.getElementById('lotLeverage');
+      const pairEl = document.getElementById('pair');
+
+      // validate
+      const ok1 = validateInput(balanceEl, 0.0001, null, 'balanceError');
+      const ok2 = validateInput(riskEl, 0.01, 100, 'riskPercentError');
+      const ok3 = validateInput(slEl, 0.1, 1000, 'stopLossError');
+      const ok4 = validateInput(levEl, 1, null, 'lotLeverageError');
+      if (!ok1 || !ok2 || !ok3 || !ok4) {
+        resultsDiv.innerHTML = '<span class="error">Error: Please correct invalid fields above.</span>';
+        button.disabled = false;
+        button.textContent = 'Calculate';
+        return;
+      }
+
+      await fetchLiveRates();
+
+      const balance = Number(balanceEl.value);
+      const riskPercent = Number(riskEl.value);
+      const stopLoss = Number(slEl.value);
+      const leverage = Number(levEl.value);
+      const pair = pairEl.value.trim().toUpperCase();
+
+      // derive pip value USD
+      const pipValueUSD = pipValuesUSD[pair];
+      if (!pipValueUSD) {
+        resultsDiv.innerHTML = '<span class="error">Error: Pip value not defined for selected pair.</span>';
+        button.disabled = false;
+        button.textContent = 'Calculate';
+        return;
+      }
+
+      // find base & quote NGN rates
+      const [base, quote] = pair.split('/');
+      const baseToNgn = rates[`${base}/NGN`] || rates[`${base}USD/NGN`];
+      const quoteToNgn = rates[`${quote}/NGN`];
+
+      // pipValue in NGN
+      let pipValueNaira;
+      if (quote === 'USD') {
+        pipValueNaira = pipValueUSD * rates['USD/NGN'];
+      } else {
+        // convert pip USD value to NGN via quote cross
+        const pairRate = (quoteToNgn && rates['USD/NGN']) ? (quoteToNgn / rates['USD/NGN']) : 1;
+        pipValueNaira = pipValueUSD * pairRate * rates['USD/NGN'];
+      }
+
+      if (!pipValueNaira || pipValueNaira === 0) {
+        resultsDiv.innerHTML = '<span class="error">Error: Unable to compute pip value in NGN.</span>';
+        button.disabled = false;
+        button.textContent = 'Calculate';
+        return;
+      }
+
+      const riskAmount = balance * (riskPercent / 100);
+      const rawLotSize = (riskAmount / stopLoss) / pipValueNaira;
+      const lotSize = Math.max(0.01, Math.round(rawLotSize * 100) / 100);
+
+      if (lotSize < 0.01) {
+        resultsDiv.innerHTML = `<span class="error">⚠️ Risk too small to open even a 0.01 lot trade with current inputs.</span>`;
+        button.disabled = false;
+        button.textContent = 'Calculate';
+        return;
+      }
+
+      const lotSizeUnits = 100000;
+      const marginRequired = (lotSize * lotSizeUnits * (rates[`${base}/NGN`] || 0)) / leverage;
+      const marginWarning = marginRequired > balance ? `<div class="warning">⚠️ Warning: Not enough margin (₦${marginRequired.toFixed(2)} required).</div><br>` : '';
+
+      resultsDiv.innerHTML = `
+        ${marginWarning}
+        <strong>Risk:</strong> ₦${riskAmount.toFixed(2)}<br>
+        <strong>Lot Size:</strong> ${lotSize.toFixed(2)} lots<br>
+        <strong>Estimated Margin Required:</strong> ₦${marginRequired.toFixed(2)}
+      `;
+      button.disabled = false;
+      button.textContent = 'Calculate';
+    }
+
+    // Reverse calc (margin -> max lots)
+    async function reverseCalc() {
+      const button = document.getElementById('reverseCalcButton');
+      const resultsDiv = document.getElementById('reverseResults');
+      resultsDiv.innerHTML = '';
+      button.disabled = true;
+      button.textContent = 'Calculating...';
+
+      const marginEl = document.getElementById('marginAvailable');
+      const pairEl = document.getElementById('reversePair');
+      const levEl = document.getElementById('reverseLeverage');
+
+      const ok1 = validateInput(marginEl, 0.0001, null, 'marginAvailableError');
+      const ok2 = validateInput(levEl, 1, null, 'reverseLeverageError');
+      if (!ok1 || !ok2) {
+        resultsDiv.innerHTML = '<span class="error">Error: Please correct invalid fields above.</span>';
+        button.disabled = false;
+        button.textContent = 'Reverse Calculate';
+        return;
+      }
+
+      await fetchLiveRates();
+
+      const margin = Number(marginEl.value);
+      const base = pairEl.value.trim().toUpperCase();
+      const leverage = Number(levEl.value);
+
+      const baseToNgn = rates[`${base}/NGN`];
+      if (!baseToNgn || baseToNgn === 0) {
+        resultsDiv.innerHTML = '<span class="error">Error: Exchange rate not found for selected base.</span>';
+        button.disabled = false;
+        button.textContent = 'Reverse Calculate';
+        return;
+      }
+
+      const lotSizeUnits = 100000;
+      const marginPerLot = (baseToNgn * lotSizeUnits) / leverage;
+      const rawMaxLot = margin / marginPerLot;
+      const maxLot = Math.floor(rawMaxLot * 100) / 100;
+
+      resultsDiv.innerHTML = `
+        <strong>Max Lot:</strong> ${maxLot.toFixed(2)} lots<br>
+        <strong>Margin per Lot:</strong> ₦${marginPerLot.toFixed(2)}
+      `;
+      button.disabled = false;
+      button.textContent = 'Reverse Calculate';
+    }
+
+    // wire UI
+    document.getElementById('calcButton').addEventListener('click', calculate);
+    document.getElementById('reverseCalcButton').addEventListener('click', reverseCalc);
+
+    // simple input live validation saving for fields (so user doesn't lose progress)
+    const storeKey = 'fxCalcDraftV1';
+    const inputsToSave = ['pair','balance','riskPercent','stopLoss','lotLeverage','reversePair','marginAvailable','reverseLeverage'];
+
+    function saveDraft() {
+      try {
+        const data = {};
+        inputsToSave.forEach(id => {
+          const el = document.getElementById(id);
+          if (!el) return;
+          if (el.type === 'checkbox') data[id] = el.checked;
+          else data[id] = el.value;
+        });
+        localStorage.setItem(storeKey, JSON.stringify(data));
+      } catch (e) { /* ignore */ }
+    }
+
+    function loadDraft() {
+      try {
+        const raw = localStorage.getItem(storeKey);
+        if (!raw) return;
+        const data = JSON.parse(raw);
+        inputsToSave.forEach(id => {
+          const el = document.getElementById(id);
+          if (!el) return;
+          if (data[id] !== undefined) el.value = data[id];
+        });
+      } catch (e) { /* ignore */ }
+    }
+
+    // save on change
+    inputsToSave.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.addEventListener('input', () => {
+        saveDraft();
+      });
+    });
+
+    // clear draft on successful calculate? keep it until user clears
+    // load rates & draft on init
+    (async function init() {
+      loadDraft();
+      await fetchLiveRates();
+    })();
+
+    // Expose for debugging (optional)
+    window.fxRates = rates;
+  })();
+</script>
+<!-- END FX CALCULATOR -->
+  <!-- Hamburger -->
+  <button id="hamburger" style="
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    font-size: 28px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+    color:white
+  ">
+   ☰
+  </button>
+  
+  <!-- Dropdown Menu -->
+  <div id="menu" style="
+    display: none;
+    position: fixed;
+    top: 60px;
+    right: 15px;
+    background: rgba(0,0,0,0.8);
+    padding: 10px;
+    border-radius: 6px;
+    z-index: 999;
+  ">
+   <ul style="list-style: none; margin: 0; padding: 0;">
+        <li><a href="/" style="color: white; text-decoration: none; display: block; padding: 8px;">Home</a></li>
+    <li><a href="/CV/index.html" style="color: white; text-decoration: none; display: block; padding: 8px;">Request CV(Résumé)</a></li>
+    <li><a href="/clicktoearn/index.html" style="color: white; text-decoration: none; display: block; padding: 8px;">Click To Earn</a></li>
+    <li><a href="/calculator/index.html" style="color: white; text-decoration: none; display: block; padding: 8px;">Fx Calculator</a></li>
+ 
+
+   </ul>
+  </div>
+ </div>
+ <script src="/script.js" type="text/javascript" charset="utf-8"></script>
+</body>
+
+</html>

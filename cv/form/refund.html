@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <!-- Google tag (gtag.js) -->
+ <script async src="https://www.googletagmanager.com/gtag/js?id=G-M89WZD35SS"></script>
+ <script>
+  window.dataLayer = window.dataLayer || [];
+  
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+  
+  gtag('config', 'G-M89WZD35SS');
+ </script>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>OBOT OBO - Portfolio</title>
+ <link rel="icon" href="/vault/img/profile_photo.png" type="image/png">
+ <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+ <link rel="stylesheet" href="/style.css" type="text/css" media="all" />
+</head>
+
+<body id="top">
+ <div class="container">
+  
+  <div class="cover-photo-container">
+   <div class="cover-photo"></div>
+  </div>
+  <canvas id="starfield"></canvas>
+  <!--START HERE-->
+<!--START HERE-->
+  <section class="refund-form-section" style="padding:2rem 1rem; max-width:700px; margin:0 auto; font-family:Inter, sans-serif; color:#fff;">
+    <h2 style="font-size:1.8rem; font-weight:600; margin-bottom:0.5rem; text-align:center; color:#fff;">Refund Request Form</h2>
+    <p style="font-size:1rem; color:#ddd; margin-bottom:1.5rem; text-align:center;">
+      If you are not satisfied with my service, please fill out this form to request a refund. 
+      Refunds are processed within 7 business days.
+    </p>
+
+    <form name="refundForm" method="POST" data-netlify="true" action="/cv/form/success.html" class="refund-form" style="display:flex; flex-direction:column; gap:1rem;">
+      <!-- Required for Netlify -->
+      <input type="hidden" name="form-name" value="refundForm">
+
+      <label for="fullName" style="font-weight:500; color:#fff;">Full Name:</label>
+      <input placeholder="e.g Obot Enefiok Obo" type="text" id="fullName" name="fullName" required 
+        style="padding:0.7rem; border:1px solid #444; border-radius:6px; font-size:1rem; background:#111; color:#fff;">
+
+      <label for="email" style="font-weight:500; color:#fff;">Email Address:</label>
+      <input placeholder="e.g oboobotenefiok@gmail.com" type="email" id="email" name="email" required 
+        style="padding:0.7rem; border:1px solid #444; border-radius:6px; font-size:1rem; background:#111; color:#fff;">
+
+      <label for="service" style="font-weight:500; color:#fff;">Service Purchased:</label>
+      <input type="text" id="service" name="service" placeholder="e.g. CV + Cover Letter" required
+        style="padding:0.7rem; border:1px solid #444; border-radius:6px; font-size:1rem; background:#111; color:#fff;">
+
+      <label for="purchaseDate" style="font-weight:500; color:#fff;">Purchase Date:</label>
+      <input type="date" id="purchaseDate" name="purchaseDate" required
+        style="padding:0.7rem; border:1px solid #444; border-radius:6px; font-size:1rem; background:#111; color:#fff;">
+
+      <label for="paymentMethod" style="font-weight:500; color:#fff;">Payment Method:</label>
+      <select id="paymentMethod" name="paymentMethod" required
+        style="padding:0.7rem; border:1px solid #444; border-radius:6px; font-size:1rem; background:#111; color:#fff;">
+        <option value="">-- Select --</option>
+        <option value="creditCard">Credit Card</option>
+        <option value="paypal">PayPal</option>
+        <option value="bankTransfer">Bank Transfer</option>
+        <option value="other">Other</option>
+      </select>
+
+      <label for="reason" style="font-weight:500; color:#fff;">Reason for Refund:</label>
+      <textarea id="reason" name="reason" rows="4" placeholder="Feel free to express yourself..." required
+        style="padding:0.7rem; border:1px solid #444; border-radius:6px; font-size:1rem; background:#111; color:#fff; resize:vertical;"></textarea>
+
+      <div class="agreement" style="display:flex; align-items:flex-start; gap:0.5rem; font-size:0.95rem; color:#fff;">
+        <input type="checkbox" id="agreement" name="agreement" required style="margin-top:0.2rem;">
+        <label for="agreement">I confirm that the information provided is accurate.</label>
+      </div>
+
+      <button type="submit" class="btn-submit" 
+        style="padding:0.9rem; border:none; border-radius:6px; background:#0d6efd; color:#fff; font-size:1rem; font-weight:600; cursor:pointer; transition:background 0.3s;">
+        Submit Refund Request
+      </button>
+    </form>
+  </section>
+
+  <script>
+    // Auto-save form progress to localStorage
+    const form = document.querySelector("form[name='refundForm']");
+    const fields = form.querySelectorAll("input, select, textarea");
+    const storageKey = "refundFormData";
+
+    // Load saved data on page load
+    window.addEventListener("DOMContentLoaded", () => {
+      const savedData = JSON.parse(localStorage.getItem(storageKey) || "{}");
+      fields.forEach(field => {
+        if (savedData[field.name]) {
+          field.value = savedData[field.name];
+          if (field.type === "checkbox") field.checked = savedData[field.name] === "true";
+        }
+      });
+    });
+
+    // Save data on input change
+    fields.forEach(field => {
+      field.addEventListener("input", () => {
+        const formData = {};
+        fields.forEach(f => {
+          formData[f.name] = f.type === "checkbox" ? f.checked.toString() : f.value;
+        });
+        localStorage.setItem(storageKey, JSON.stringify(formData));
+      });
+    });
+
+    // Clear storage after successful submission
+    form.addEventListener("submit", () => {
+      localStorage.removeItem(storageKey);
+    });
+  </script>
+ </div>
+    <!-- Hamburger -->
+   <button id="hamburger" style="
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    font-size: 28px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+    color:white
+  ">
+    ☰
+   </button>
+   
+   <!-- Dropdown Menu -->
+   <div id="menu" style="
+    display: none;
+    position: fixed;
+    top: 60px;
+    right: 15px;
+    background: rgba(0,0,0,0.8);
+    padding: 10px;
+    border-radius: 6px;
+    z-index: 999;
+  ">
+    <ul style="list-style: none; margin: 0; padding: 0;">
+     <li><a href="/" style="color: white; text-decoration: none; display: block; padding: 8px;">Home</a></li>
+     <li><a href="/clicktoearn" style="color: white; text-decoration: none; display: block; padding: 8px;">Click To Earn</a></li>
+     <li><a href="/calculator/index.html" style="color: white; text-decoration: none; display: block; padding: 8px;">Fx Calculator</a></li>
+     
+     
+    </ul>
+   </div>
+ <script src="/script.js" type="text/javascript" charset="utf-8"></script>
+</body>
+
+</html>
