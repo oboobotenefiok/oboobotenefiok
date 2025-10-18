@@ -608,3 +608,31 @@ a {
   background-color: var(--accent-color);
   color: white;
 }
+/* Ensure starfield is always visible and animations work in both themes */
+#starfield {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  display: block !important; /* Force display in both themes */
+}
+
+/* Remove any theme-specific hiding */
+[data-theme="light"] #starfield {
+  display: block !important;
+}
+
+/* Ensure bio animation is visible */
+.bio {
+  opacity: 1 !important;
+  visibility: visible !important;
+  min-height: 24px;
+}
+
+/* Force gallery animations */
+.project-gallery {
+  opacity: 1 !important;
+}

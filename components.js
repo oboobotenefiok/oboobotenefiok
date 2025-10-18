@@ -43,7 +43,14 @@ class NavigationComponents {
     const savedTheme = localStorage.getItem('theme') || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
     this.updateThemeToggle(savedTheme);
-    this.toggleStarfield(savedTheme);
+    
+    // Initialize starfield for both themes immediately
+    this.initializeStarfield();
+    
+    // Dispatch event to notify other scripts
+    document.dispatchEvent(new CustomEvent('themeInitialized', {
+      detail: { theme: savedTheme }
+    }));
   }
   
   static toggleTheme() {
@@ -53,20 +60,15 @@ class NavigationComponents {
     document.documentElement.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
     this.updateThemeToggle(newTheme);
-    this.toggleStarfield(newTheme);
+    
+    // Restart starfield with new theme
+    this.initializeStarfield();
   }
   
   static updateThemeToggle(theme) {
     const themeToggle = document.getElementById('themeToggle');
     if (themeToggle) {
       themeToggle.textContent = theme === 'light' ? '🌙' : '☀️';
-    }
-  }
-  
-  static toggleStarfield(theme) {
-    const starfield = document.getElementById('starfield');
-    if (starfield && theme === 'dark') {
-      this.initializeStarfield();
     }
   }
   
@@ -100,19 +102,21 @@ class NavigationComponents {
     function animateStars() {
       const currentTheme = document.documentElement.getAttribute('data-theme');
       
+      // Clear canvas with appropriate background
       if (currentTheme === 'dark') {
-        ctx.fillStyle = 'black';
+        ctx.fillStyle = 'rgba(18, 18, 18, 0.9)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = 'white';
       } else {
-        ctx.fillStyle = 'white';
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
       }
       
       stars.forEach(star => {
-        if (currentTheme === 'light') {
-          ctx.fillStyle = `rgba(0, 0, 0, ${star.opacity})`;
+        if (currentTheme === 'dark') {
+          ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+        } else {
+          // Subtle gray stars for light mode
+          ctx.fillStyle = `rgba(0, 0, 0, ${star.opacity * 0.3})`;
         }
         
         ctx.beginPath();
@@ -124,19 +128,13 @@ class NavigationComponents {
         if (star.y > canvas.height) {
           star.y = 0;
           star.x = Math.random() * canvas.width;
-          star.size = currentTheme === 'dark' ?
-            Math.random() * 1.5 + 0.5 :
-            Math.random() * 1.2 + 0.3;
-          star.speed = currentTheme === 'dark' ?
-            Math.random() * 0.5 + 0.1 :
-            Math.random() * 0.3 + 0.1;
-          star.opacity = currentTheme === 'dark' ? 1 : Math.random() * 0.4 + 0.1;
         }
       });
       
       requestAnimationFrame(animateStars);
     }
     
+    // Start animation immediately
     animateStars();
   }
   

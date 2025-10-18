@@ -18,33 +18,31 @@ function autoScrollGalleries() {
       }
     }
     
-    // Start auto-scroll
-    scrollInterval = setInterval(scrollGallery, scrollDelay / 60);
-    
-    // Pause on hover
-    gallery.addEventListener('mouseenter', () => {
-      clearInterval(scrollInterval);
-    });
-    
-    // Resume when mouse leaves
-    gallery.addEventListener('mouseleave', () => {
+    // Start auto-scroll only if gallery has multiple images
+    if (gallery.scrollWidth > gallery.clientWidth) {
       scrollInterval = setInterval(scrollGallery, scrollDelay / 60);
-    });
+      
+      // Pause on hover
+      gallery.addEventListener('mouseenter', () => {
+        clearInterval(scrollInterval);
+      });
+      
+      // Resume when mouse leaves
+      gallery.addEventListener('mouseleave', () => {
+        scrollInterval = setInterval(scrollGallery, scrollDelay / 60);
+      });
+    }
   });
 }
 
-// Initialize when DOM is ready
-document.addEventListener('DOMContentLoaded', function() {
-  autoScrollGalleries();
-});
-// Simple Typewriter Effect - Add to script.js
+// Simple Typewriter Effect
 function initSimpleTypewriter() {
   const bioElement = document.querySelector('.bio');
   if (!bioElement) return;
   
   const texts = [
     "Building innovative digital solutions",
-     "A lot is going on in here",
+    "A lot is going on in here",
     "Front end Developer",
     "Quantitative Analyst",
     "You either build or sit back watching",
@@ -83,12 +81,49 @@ function initSimpleTypewriter() {
     setTimeout(type, typeSpeed);
   }
   
-  // Start the effect after a brief delay
-  setTimeout(type, 1000);
+  // Start the effect immediately with shorter delay
+  setTimeout(type, 300);
 }
 
-// Call it when DOM is ready
-document.addEventListener('DOMContentLoaded', function() {
+// Wait for theme to be initialized before starting animations
+function waitForThemeInitialization() {
+  return new Promise((resolve) => {
+    if (document.documentElement.hasAttribute('data-theme')) {
+      resolve();
+    } else {
+      document.addEventListener('themeInitialized', resolve);
+      // Fallback timeout
+      setTimeout(resolve, 100);
+    }
+  });
+}
+
+// Initialize everything when DOM is ready
+document.addEventListener('DOMContentLoaded', async function() {
+  // Wait for theme to be fully initialized
+  await waitForThemeInitialization();
+  
+  // Force animations to start immediately
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  
+  // Trigger reflow to ensure CSS applies
+  document.body.clientHeight;
+  
+  // Start all animations
   autoScrollGalleries();
-  initSimpleTypewriter(); // Add this line
+  initSimpleTypewriter();
+  
+  // Ensure starfield is visible
+  const starfield = document.getElementById('starfield');
+  if (starfield) {
+    starfield.style.display = 'block';
+  }
 });
+
+// Immediate animation start as fallback for fast loading
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+  setTimeout(() => {
+    autoScrollGalleries();
+    initSimpleTypewriter();
+  }, 100);
+}
