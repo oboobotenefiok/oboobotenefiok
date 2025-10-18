@@ -20,9 +20,6 @@
   --neumorphic-shadow: 8px 8px 16px #0d0d0d, -8px -8px 16px #272727;
 }
 
-[data-theme="light"] #starfield {
-  display: none;
-}
 
 * {
   margin: 0;
