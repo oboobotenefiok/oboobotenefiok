@@ -43,7 +43,7 @@ function initSimpleTypewriter() {
   const texts = [
     "Building innovative digital solutions",
     "A lot is going on in here",
-    "Front end Developer",
+    "Front End Developer",
     "Quantitative Analyst",
     "You either build or sit back watching",
     "Health Technician",
