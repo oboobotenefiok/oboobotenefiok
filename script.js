@@ -44,9 +44,11 @@ function initSimpleTypewriter() {
   
   const texts = [
     "Building innovative digital solutions",
-    "Full-Stack Developer",
+     "A lot is going on in here",
+    "Front end Developer",
     "Quantitative Analyst",
-    "AI/ML Engineer"
+    "You either build or sit back watching",
+    "Health Technician",
   ];
   
   let currentIndex = 0;

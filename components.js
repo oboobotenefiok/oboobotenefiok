@@ -1,38 +1,40 @@
-// components.js - Main navigation and theme component
+// components.js - Reusable navigation component
 class NavigationComponents {
   static init() {
-    this.injectComponents();
+    this.injectNavigation();
     this.initializeTheme();
     this.attachEventListeners();
   }
   
   static createNavigation() {
     return `
-            <div class="nav-controls">
-                <button id="themeToggle" class="theme-toggle">🌙</button>
-                <button id="hamburger" class="hamburger-btn">☰</button>
-            </div>
-            <div id="menu" class="dropdown-menu">
-                <ul>
-                    <li><a href="/CV">Request CV(Résumé)</a></li>
-                    <li><a href="/clicktoearn">Click To Earn</a></li>
-                    <li><a href="/calculator">Fx Calculator</a></li>
-                </ul>
-            </div>
-        `;
+      <div class="nav-controls">
+        <button id="themeToggle" class="theme-toggle">🌙</button>
+        <button id="hamburger" class="hamburger-btn">☰</button>
+      </div>
+      <div id="dropdownMenu" class="dropdown-menu">
+        <ul>
+        <li><a href="/">Home</a></li>
+          <li><a href="/CV">Request CV (Résumé)</a></li>
+          <li><a href="/clicktoearn">Click To Earn</a></li>
+          <li><a href="/calculator">Fx Calculator</a></li>
+          
+        </ul>
+      </div>
+    `;
   }
   
-  static injectComponents() {
-  
+  static injectNavigation() {
+    // Remove existing navigation if any
     const existingNav = document.querySelector('.nav-controls');
     if (existingNav) existingNav.remove();
     
-    const existingMenu = document.getElementById('menu');
+    const existingMenu = document.getElementById('dropdownMenu');
     if (existingMenu) existingMenu.remove();
     
-    // Create and inject new navigation
+    // Create and inject navigation
     const navContainer = document.createElement('div');
-    navContainer.id = 'nav-components';
+    navContainer.id = 'navigation-component';
     navContainer.innerHTML = this.createNavigation();
     document.body.prepend(navContainer);
   }
@@ -63,8 +65,7 @@ class NavigationComponents {
   
   static toggleStarfield(theme) {
     const starfield = document.getElementById('starfield');
-    if (starfield) {
-      starfield.style.display = 'block'; // Always show in both modes
+    if (starfield && theme === 'dark') {
       this.initializeStarfield();
     }
   }
@@ -80,44 +81,37 @@ class NavigationComponents {
       canvas.height = window.innerHeight;
     }
     
-    // Initial resize
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
     
-    // Create stars
     let stars = [];
-    const starCount = 150; // Slightly fewer for light mode
+    const starCount = 150;
     
     for (let i = 0; i < starCount; i++) {
       stars.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        size: Math.random() * 1.2 + 0.3, // Smaller stars for light mode
-        speed: Math.random() * 0.3 + 0.1, // Slower speed for light mode
-        opacity: Math.random() * 0.4 + 0.1 // Subtle opacity for light mode
+        size: Math.random() * 1.2 + 0.3,
+        speed: Math.random() * 0.3 + 0.1,
+        opacity: Math.random() * 0.4 + 0.1
       });
     }
     
     function animateStars() {
       const currentTheme = document.documentElement.getAttribute('data-theme');
       
-      // Clear canvas with appropriate background
       if (currentTheme === 'dark') {
-        // Dark mode: black background with white stars
         ctx.fillStyle = 'black';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.fillStyle = 'white';
       } else {
-        // Light mode: white background with black/dark gray stars
         ctx.fillStyle = 'white';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.3)'; // Subtle black stars
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
       }
       
-      // Draw and update stars
       stars.forEach(star => {
         if (currentTheme === 'light') {
-          // For light mode, use rgba for opacity
           ctx.fillStyle = `rgba(0, 0, 0, ${star.opacity})`;
         }
         
@@ -125,10 +119,8 @@ class NavigationComponents {
         ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
         ctx.fill();
         
-        // Move star down
         star.y += star.speed;
         
-        // Reset star if it goes off screen
         if (star.y > canvas.height) {
           star.y = 0;
           star.x = Math.random() * canvas.width;
@@ -142,11 +134,9 @@ class NavigationComponents {
         }
       });
       
-      // Continue animation
       requestAnimationFrame(animateStars);
     }
     
-    // Start animation
     animateStars();
   }
   
@@ -159,7 +149,7 @@ class NavigationComponents {
     
     // Hamburger menu
     const hamburger = document.getElementById('hamburger');
-    const menu = document.getElementById('menu');
+    const menu = document.getElementById('dropdownMenu');
     
     if (hamburger && menu) {
       hamburger.addEventListener('click', (e) => {
@@ -175,7 +165,7 @@ class NavigationComponents {
       });
     }
     
-    // Smooth scrolling
+    // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -185,44 +175,17 @@ class NavigationComponents {
         }
       });
     });
-    
-    // Auto-scroll galleries (dark mode only)
-    this.autoScrollGalleries();
-  }
-  
-  static autoScrollGalleries() {
-    const galleries = document.querySelectorAll('.project-gallery');
-    galleries.forEach(gallery => {
-      let scrollAmount = 0;
-      const scrollSpeed = 1;
-      const scrollDelay = 2000;
-      let scrollInterval;
-      
-      function scrollGallery() {
-        if (scrollAmount >= gallery.scrollWidth - gallery.clientWidth) {
-          scrollAmount = 0;
-          gallery.scrollTo({ left: 0, behavior: 'instant' });
-        } else {
-          scrollAmount += scrollSpeed;
-          gallery.scrollTo({ left: scrollAmount, behavior: 'smooth' });
-        }
-      }
-      
-      const currentTheme = document.documentElement.getAttribute('data-theme');
-      if (currentTheme === 'dark') {
-        scrollInterval = setInterval(scrollGallery, scrollDelay / 60);
-        gallery.addEventListener('mouseenter', () => clearInterval(scrollInterval));
-        gallery.addEventListener('mouseleave', () => {
-          scrollInterval = setInterval(scrollGallery, scrollDelay / 60);
-        });
-      }
-    });
   }
 }
 
-// Initialize when DOM is ready
+// Auto-initialize when DOM is ready
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => NavigationComponents.init());
 } else {
   NavigationComponents.init();
+}
+
+// Export for module usage if needed
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = NavigationComponents;
 }
