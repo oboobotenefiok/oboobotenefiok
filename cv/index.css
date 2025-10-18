@@ -1,9 +1,6 @@
    .landing-hero {
     text-align: center;
     padding: 0rem 2rem;
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-     url('/vault/img/hero-bg.jpg') center/cover no-repeat;
-    color: #fff;
    }
    
    .landing-hero h1 {
@@ -65,7 +62,7 @@
    .pricing {
     padding: 4rem 2rem;
     text-align: center;
-    color: var(--text-color, #f8f9fa);
+    
    }
    
    .pricing h2 {
@@ -76,7 +73,6 @@
    
    .pricing-intro {
     margin-bottom: 3rem;
-    color: #ccc;
    }
    
    .pricing-cards {
@@ -123,7 +119,6 @@
    .pricing-card ul li {
     margin-bottom: 0.75rem;
     font-size: 0.95rem;
-    color: #ddd;
    }
    
    .pricing-card ul i {
@@ -167,50 +162,50 @@
     border: 2px solid var(--accent-color, #0d6efd);
     transform: scale(1.05);
    }
-       #oboto-faq {
-     font-family: Inter, system-ui, sans-serif;
-    }
+   
+   #oboto-faq {
+    font-family: Inter, system-ui, sans-serif;
+   }
+   
+   #oboto-faq .obo-faq-question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10%;
+    padding: ;
     
-    #oboto-faq .obo-faq-question {
-     width: 100%;
-     display: flex;
-     justify-content: space-between;
-     align-items: center;
-     background: none;
-     border: none;
-     padding: 0;
-     color: #fff;
-     font-weight: 600;
-     font-size: 1rem;
-     cursor: pointer;
-     text-align: left;
-    }
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: left;
+   }
+   
+   #oboto-faq .obo-faq-qtext {
+    flex: 1;
+   }
+   
+   #oboto-faq .obo-faq-icon {
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    font-weight: 700;
+    transition: transform 220ms ease;
+   }
+   
+   #oboto-faq .obo-faq-answer {
     
-    #oboto-faq .obo-faq-qtext {
-     flex: 1;
-    }
-    
-    #oboto-faq .obo-faq-icon {
-     width: 28px;
-     height: 28px;
-     line-height: 28px;
-     text-align: center;
-     font-weight: 700;
-     transition: transform 220ms ease;
-    }
-    
-    #oboto-faq .obo-faq-answer {
-     color: #d0d0d0;
-     font-size: 0.95rem;
-     line-height: 1.6;
-     overflow: hidden;
-     max-height: 0;
-     opacity: 0;
-     padding-top: 0;
-     transition: max-height 320ms cubic-bezier(.2, 0, .15, 1), opacity 220ms ease, padding-top 220ms ease;
-    }
-    
-    #oboto-faq .obo-faq-answer.open {
-     opacity: 1;
-     padding-top: 0.5rem;
-    }
+    font-size: 0.95rem;
+    line-height: 1.6;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    padding-top: 0;
+    transition: max-height 320ms cubic-bezier(.2, 0, .15, 1), opacity 220ms ease, padding-top 220ms ease;
+   }
+   
+   #oboto-faq .obo-faq-answer.open {
+    opacity: 1;
+    padding-top: 0.5rem;
+   }

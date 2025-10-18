@@ -1,340 +1,351 @@
   /* Phone selector styles */
-     .iti__selected-flag {
-      background-color: black !important;
-      color: black !important;
-     }
-     
-     .iti__arrow {
-      border-top: 4px solid white !important;
-     }
-     
-     .iti__country-list {
-      background-color: #111 !important;
-      color: white !important;
-     }
-     
-     .iti__country {
-      color: white !important;
-     }
-     
-     .iti__country:hover {
-      background-color: #333 !important;
-     }
-     
-     /* Search box inside dropdown */
-     .iti__search-input {
-      background-color: #222 !important;
-      color: white !important;
-      border: 1px solid #444 !important;
-      border-radius: 4px;
-      padding: 6px;
-     }
-     
-     .iti__search-input::placeholder {
-      color: #aaa !important;
-     }
-     
-     /* Country & city suggestion list */
-     #countryList li,
-     #cityList li {
-      padding: 6px;
-      cursor: pointer;
-     }
-     
-     #countryList li:hover,
-     #cityList li:hover {
-      background-color: #f0f0f0;
-     }
-        .dropdown-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    max-height: 200px;
-    overflow-y: auto;
-    border: 1px solid #444;
-    display: none;
-    color: white;
-    background: #111;
-    position: absolute;
-    z-index: 999;
-    width: calc(100% - 20px);
+  .iti__selected-flag {
+   background-color: black !important;
+   color: black !important;
+  }
+  
+  .iti__arrow {
+   border-top: 4px solid white !important;
+  }
+  
+  .iti__country-list {
+   background-color: #111 !important;
+   color: white !important;
+  }
+  
+  .iti__country {
+   color: white !important;
+  }
+  
+  .iti__country:hover {
+   background-color: #333 !important;
+  }
+  
+  /* Search box inside dropdown */
+  .iti__search-input {
+   background-color: #222 !important;
+   color: white !important;
+   border: 1px solid #444 !important;
+   border-radius: 4px;
+   padding: 6px;
+  }
+  
+  .iti__search-input::placeholder {
+   color: #aaa !important;
+  }
+  
+  /* Country & city suggestion list */
+  #countryList li,
+  #cityList li {
+   padding: 6px;
+   cursor: pointer;
+  }
+  
+  #countryList li:hover,
+  #cityList li:hover {
+   background-color: #f0f0f0;
+  }
+  
+  .dropdown-list {
+   list-style: none;
+   margin: 0;
+   padding: 0;
+   max-height: 200px;
+   overflow-y: auto;
+   border: 1px solid #444;
+   display: none;
+   color: white;
+   background: #111;
+   position: absolute;
+   z-index: 999;
+   width: calc(100% - 20px);
+  }
+  
+  .dropdown-list li {
+   padding: 8px;
+   cursor: pointer;
+  }
+  
+  .dropdown-list li:hover {
+   background: #333;
+  }
+  
+  #countryInput,
+  #cityInput {
+   color: white;
+   background: #111;
+   border: 1px solid #444;
+   padding: 8px;
+   margin-bottom: 10px;
+   width: 100%;
+  }
+  
+  #reference-details-label,
+  #references {
+   display: none;
+   /* hidden initially */
+  }
+  
+  .resume-form {
+   padding: 2rem;
+   border-radius: 12px;
+   max-width: 800px;
+   margin: 0 auto;
+  }
+  
+  .resume-form label,
+  .resume-form legend {
+   display: block;
+   margin: 1rem 0 .5rem;
+   font-weight: 600;
+  }
+  
+  .resume-form input,
+  .resume-form textarea,
+  .resume-form select {
+   width: 100%;
+   padding: .6rem .8rem;
+   border-radius: 8px;
+   border: 1px solid #444;
+   color: #fff;
+  }
+  
+  .resume-form input[type="file"] {
+   padding: .5rem;
+   border: 1px dashed #666;
+   cursor: pointer;
+  }
+  
+  .resume-form input[type="file"]::-webkit-file-upload-button {
+   background: #333;
+   border: none;
+   padding: .5rem 1rem;
+   border-radius: 6px;
+   color: #fff;
+   cursor: pointer;
+  }
+  
+  textarea {
+   min-height: 120px;
+  }
+  
+  .form-navigation {
+   margin-top: 1.5rem;
+   display: flex;
+   justify-content: space-between;
+   
+   color: white;
+  }
+  
+  button {
+   border: 1px solid #444;
+   color: #fff;
+   padding: .7rem 1.2rem;
+   border-radius: 8px;
+   cursor: pointer;
+   background: none;
+  }
+  
+  button:hover {
+   border-color: #888;
+  }
+  
+  .submit-btn {
+   border: none;
+   background: #4caf50;
+   color: #fff;
+  }
+  
+  
+  
+  
+  
+  
+  
+  .form-step {
+   display: none;
+  }
+  
+  .form-step.active {
+   display: block;
+  }
+  
+  .prev-btn {
+   display: none;
+   background: black;
+   color: white;
+  }
+  
+  .next-btn {
+   background: black;
+   color: white;
+  }
+  
+  .submit-btn {
+   display: none;
+   
+  }
+  
+  .form-note {
+   margin-top: 1rem;
+   font-size: .9rem;
+   color: #ff4d4d;
+   font-weight: 600;
+  }
+  
+  .resume-form input[type="text"],
+  .resume-form input[type="email"],
+  .resume-form input[type="tel"],
+  .resume-form input[type="url"],
+  .resume-form input[type="number"],
+  .resume-form input[type="password"],
+  .resume-form textarea,
+  .resume-form select {
+   background: #111;
+   /* dark background */
+   color: #fff;
+   /* white text */
+   border: 1px solid #444;
+   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .resume-form input::placeholder,
+  .resume-form textarea::placeholder {
+   color: #bbb;
+   /* light gray placeholder */
+  }
+  
+  .resume-form input:focus,
+  .resume-form textarea:focus,
+  .resume-form select:focus {
+   outline: none;
+   border-color: #a0522d;
+   /* brown border */
+   box-shadow: 0 0 8px #a0522d;
+   /* brown glow */
+  }
+  
+  /* Container for custom radio */
+  label {
+   position: relative;
+   padding-left: 35px;
+   /* space for the custom circle */
+   margin-bottom: 15px;
+   display: block;
+   cursor: pointer;
+   font-size: 1rem;
+   user-select: none;
+   
+   /* text color */
+  }
+  
+  /* Hide the default radio button */
+  label input[type="radio"] {
+   position: absolute;
+   opacity: 0;
+   cursor: pointer;
+  }
+  
+  /* Create custom radio circle */
+  label input[type="radio"]+span {
+   position: absolute;
+   left: 0;
+   top: 50%;
+   transform: translateY(-50%);
+   height: 20px;
+   width: 20px;
+   background-color: #111;
+   border: 2px solid #444;
+   border-radius: 50%;
+   transition: all 0.3s ease;
+  }
+  
+  /* On hover */
+  label:hover input[type="radio"]+span {
+   border-color: #a0522d;
+  }
+  
+  /* Checked state */
+  label input[type="radio"]:checked+span {
+   background-color: #4caf50;
+   border-color: #4caf50;
+  }
+  
+  /* Inner dot for checked state */
+  label input[type="radio"]:checked+span::after {
+   content: "";
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   width: 10px;
+   height: 10px;
+   border-radius: 50%;
+   background: white;
+   transform: translate(-50%, -50%);
+  }
+  
+  /* Optional: smooth focus glow */
+  label input[type="radio"]:focus+span {
+   box-shadow: 0 0 5px #a0522d;
+  }
+  
+  /* Full-page overlay */
+  .loading-overlay {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background: rgba(0, 0, 0, 0.6);
+   /* black transparent */
+   display: flex;
+   flex-direction: column;
+   /* spinner + text stacked */
+   align-items: center;
+   justify-content: center;
+   z-index: 9999;
+   
+   font-size: 1.2rem;
+   font-family: sans-serif;
+  }
+  
+  /* Spinner circle */
+  .spinner {
+   width: 50px;
+   height: 50px;
+   border: 4px solid rgba(255, 255, 255, 0.3);
+   border-top: 4px solid #fff;
+   border-radius: 50%;
+   animation: spin 0.8s linear infinite;
+   margin-bottom: 15px;
+  }
+  
+  /* Animated dots after "Submitting" */
+  .loading-text::after {
+   content: '';
+   animation: dots 1.5s steps(3, end) infinite;
+  }
+  
+  @keyframes spin {
+   to {
+    transform: rotate(360deg);
    }
-   
-   .dropdown-list li {
-    padding: 8px;
-    cursor: pointer;
-   }
-   
-   .dropdown-list li:hover {
-    background: #333;
-   }
-   
-   #countryInput,
-   #cityInput {
-    color: white;
-    background: #111;
-    border: 1px solid #444;
-    padding: 8px;
-    margin-bottom: 10px;
-    width: 100%;
-   }
-      #reference-details-label,
-   #references {
-    display: none;
-    /* hidden initially */
-   }
-   
-   /* ... rest of your CSS untouched ... */
-   .resume-form {
-    color: #e5e5e5;
-    padding: 2rem;
-    border-radius: 12px;
-    max-width: 800px;
-    margin: 0 auto;
-   }
-   
-   .resume-form label,
-   .resume-form legend {
-    display: block;
-    margin: 1rem 0 .5rem;
-    font-weight: 600;
-   }
-   
-   .resume-form input,
-   .resume-form textarea,
-   .resume-form select {
-    width: 100%;
-    padding: .6rem .8rem;
-    border-radius: 8px;
-    border: 1px solid #444;
-    color: #fff;
-   }
-   
-   .resume-form input[type="file"] {
-    padding: .5rem;
-    border: 1px dashed #666;
-    cursor: pointer;
-   }
-   
-   .resume-form input[type="file"]::-webkit-file-upload-button {
-    background: #333;
-    border: none;
-    padding: .5rem 1rem;
-    border-radius: 6px;
-    color: #fff;
-    cursor: pointer;
-   }
-   
-   textarea {
-    min-height: 120px;
-   }
-   
-   .form-navigation {
-    margin-top: 1.5rem;
-    display: flex;
-    justify-content: space-between;
-   }
-   
-   button {
-    border: 1px solid #444;
-    color: #fff;
-    padding: .7rem 1.2rem;
-    border-radius: 8px;
-    cursor: pointer;
-    background: none;
-   }
-   
-   button:hover {
-    border-color: #888;
-   }
-   
-   .submit-btn {
-    border: none;
-    background: #4caf50;
-    color: #fff;
-   }
-   
-   
-   
-   
-   
-   
-   
-   .form-step {
-    display: none;
-   }
-   
-   .form-step.active {
-    display: block;
-   }
-   
-   .prev-btn {
-    display: none;
-   }
-   
-   .submit-btn {
-    display: none;
-   }
-   
-   .form-note {
-    margin-top: 1rem;
-    font-size: .9rem;
-    color: #ff4d4d;
-    font-weight: 600;
-   }
-   
-   .resume-form input[type="text"],
-   .resume-form input[type="email"],
-   .resume-form input[type="tel"],
-   .resume-form input[type="url"],
-   .resume-form input[type="number"],
-   .resume-form input[type="password"],
-   .resume-form textarea,
-   .resume-form select {
-    background: #111;
-    /* dark background */
-    color: #fff;
-    /* white text */
-    border: 1px solid #444;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-   }
-   
-   .resume-form input::placeholder,
-   .resume-form textarea::placeholder {
-    color: #bbb;
-    /* light gray placeholder */
-   }
-   
-   .resume-form input:focus,
-   .resume-form textarea:focus,
-   .resume-form select:focus {
-    outline: none;
-    border-color: #a0522d;
-    /* brown border */
-    box-shadow: 0 0 8px #a0522d;
-    /* brown glow */
-   }
-   
-   /* Container for custom radio */
-   label {
-    position: relative;
-    padding-left: 35px;
-    /* space for the custom circle */
-    margin-bottom: 15px;
-    display: block;
-    cursor: pointer;
-    font-size: 1rem;
-    user-select: none;
-    color: #fff;
-    /* text color */
-   }
-   
-   /* Hide the default radio button */
-   label input[type="radio"] {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-   }
-   
-   /* Create custom radio circle */
-   label input[type="radio"]+span {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 20px;
-    width: 20px;
-    background-color: #111;
-    border: 2px solid #444;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-   }
-   
-   /* On hover */
-   label:hover input[type="radio"]+span {
-    border-color: #a0522d;
-   }
-   
-   /* Checked state */
-   label input[type="radio"]:checked+span {
-    background-color: #4caf50;
-    border-color: #4caf50;
-   }
-   
-   /* Inner dot for checked state */
-   label input[type="radio"]:checked+span::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: white;
-    transform: translate(-50%, -50%);
-   }
-   
-   /* Optional: smooth focus glow */
-   label input[type="radio"]:focus+span {
-    box-shadow: 0 0 5px #a0522d;
-   }
-      /* Full-page overlay */
-   .loading-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    /* black transparent */
-    display: flex;
-    flex-direction: column;
-    /* spinner + text stacked */
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    color: #fff;
-    font-size: 1.2rem;
-    font-family: sans-serif;
-   }
-   
-   /* Spinner circle */
-   .spinner {
-    width: 50px;
-    height: 50px;
-    border: 4px solid rgba(255, 255, 255, 0.3);
-    border-top: 4px solid #fff;
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-    margin-bottom: 15px;
-   }
-   
-   /* Animated dots after "Submitting" */
-   .loading-text::after {
+  }
+  
+  @keyframes dots {
+   0% {
     content: '';
-    animation: dots 1.5s steps(3, end) infinite;
    }
    
-   @keyframes spin {
-    to {
-     transform: rotate(360deg);
-    }
+   33% {
+    content: '.';
    }
    
-   @keyframes dots {
-    0% {
-     content: '';
-    }
-    
-    33% {
-     content: '.';
-    }
-    
-    66% {
-     content: '..';
-    }
-    
-    100% {
-     content: '...';
-    }
+   66% {
+    content: '..';
    }
+   
+   100% {
+    content: '...';
+   }
+  }

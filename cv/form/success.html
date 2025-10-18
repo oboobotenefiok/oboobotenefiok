@@ -22,7 +22,8 @@
 </head>
 
 <body id="top">
- <div class="container">
+  <canvas id="starfield"></canvas>
+ 
   
   <div class="cover-photo-container">
    <div class="cover-photo"></div>
@@ -47,7 +48,7 @@
   justify-content: center;
   min-height: 80vh;
   text-align: center;
-  color: #f1f1f1;
+  
   font-family: 'Inter', sans-serif;
   margin-top: 0rem;
 }
@@ -93,20 +94,7 @@
 }
 </style>
  </div>
-   <!-- Hamburger -->
-   <button id="hamburger" style="
-    position: fixed;
-    top: 15px;
-    right: 15px;
-    font-size: 28px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    z-index: 1000;
-    color:white
-  ">
-    ☰
-   </button>
+ 
    
    <!-- Dropdown Menu -->
    <div id="menu" style="
@@ -131,7 +119,7 @@
   localStorage.clear();
 </script>
 
- <script src="/script.js" type="text/javascript" charset="utf-8"></script>
+ <script src="/components.js" type="text/javascript" charset="utf-8"></script>
 </body>
 
 </html>

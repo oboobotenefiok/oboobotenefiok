@@ -21,16 +21,14 @@
  <link rel="stylesheet" href="/style.css" type="text/css" media="all" />
  <link rel="stylesheet" href="/cv/index.css" type="text/css" media="all" />
 </head>
-
 <body id="top">
- <div class="container">
+   <canvas id="starfield"></canvas>
+
   
   <div class="cover-photo-container">
    <div class="cover-photo"></div>
   </div>
-  <canvas id="starfield"></canvas>
-  <!--START HERE-->
-  <!--START HERE-->
+  
   <section class="landing-hero">
    <div class="hero-content">
     <h2>Professional CV Writing That Gets You Hired</h2> <br />
@@ -87,11 +85,11 @@
    </div>
   </section>
   <!-- Pricing Section -->
-
+  
   <section class="pricing" id="pricing">
    <h2> Pricing</h2>
-     <p style="color:red" id="message"></p>
-
+   <p style="color:red" id="message"></p>
+   
    <p class="pricing-intro">Choose the plan that best suits your needs. No hidden fees.</p>
    
    <div class="pricing-cards">
@@ -141,49 +139,47 @@
    <h5>One good job equals a living on your CV investment</h5>
    <h2>Ready to Land Your Next Job?</h2>
    <p>Click below to submit your details and get your professional CV started today.</p>
-<a id="signupBtn" href="/cv/form/index.html" class="btn-secondary">Fill The 4-Step Form</a>
-
-<script>
- // Get referral from ?ref=CODE
- const urlParams = new URLSearchParams(window.location.search);
- const ref = urlParams.get('ref');
- 
- if (ref) {
-  // Save referral to localStorage
-  localStorage.setItem('referralCode', ref);
-  
-  // Append referral to the button link
-  const signupBtn = document.getElementById('signupBtn');
-  signupBtn.href = "/cv/form/index.html?ref=" + encodeURIComponent(ref);
- }
-</script>
+   <a id="signupBtn" href="/cv/form/index.html" class="btn-secondary">Fill The 4-Step Form</a>
+   
+   <script>
+    // Get referral from ?ref=CODE
+    const urlParams = new URLSearchParams(window.location.search);
+    const ref = urlParams.get('ref');
+    
+    if (ref) {
+     // Save referral to localStorage
+     localStorage.setItem('referralCode', ref);
+     
+     // Append referral to the button link
+     const signupBtn = document.getElementById('signupBtn');
+     signupBtn.href = "/cv/form/index.html?ref=" + encodeURIComponent(ref);
+    }
+   </script>
    <a href="#contact" class="btn-secondary" onclick="lookdown_1(), lookdown_2(), lookdown_3()">Talk With Me First</a>
   </section>
   
   <section class="contact">
-   <h2 id="contact" >Get In Touch</h2>
+   <h2 id="contact">Get In Touch</h2>
    <p class="btn-secondary" id="lookdown"></p>
-<div class="contact-section">
- 
-
-
-
-  <!-- Email with prefilled subject & body -->
-  <a href="mailto:oboobotenefiok@gmail.com?subject=CV(Résumé)%20Request&body=Hi%20Obot," 
-     class="contact-button hire-me" target="_blank">
-    <i class="fas fa-envelope"></i>
-  </a>
-
-    <a href="https://x.com/oboobotenefiok" 
-     class="contact-button twitter" target="_blank">
-    <i class="fab fa-x-twitter"></i>
-  </a>
-
-</div>
-
+   <div class="contact-section">
+    
+    
+    
+    
+    
+    <a href="mailto:oboobotenefiok@gmail.com?subject=CV(Résumé)%20Request&body=Hi%20Obot," class="contact-button hire-me" target="_blank">
+     <i class="fas fa-envelope"></i>
+    </a>
+    
+    <a href="https://x.com/oboobotenefiok" class="contact-button twitter" target="_blank">
+     <i class="fab fa-x-twitter"></i>
+    </a>
+    
+   </div>
+   
    <!-- FAQ Section -->
-   <section id="oboto-faq" style="margin-top:1.5rem; color:#fff; max-width:900px; margin-left:auto; margin-right:auto;">
-    <h2 style="font-size:1.4rem; font-weight:700; margin-bottom:0.75rem; color:#fff;">Frequently Asked Questions</h2>
+   <section id="oboto-faq" style="margin-top:1.5rem; ; max-width:900px; margin-left:auto; margin-right:auto;">
+    <h2 style="font-size:1.4rem; font-weight:700; margin-bottom:0.75rem; ">Frequently Asked Questions</h2>
     
     <!-- 1 -->
     <div class="obo-faq-item" style="border-bottom:1px solid rgba(255,255,255,0.06); padding:0.75rem 0;">
@@ -221,10 +217,10 @@
     <!-- 4 -->
     <div id="holdnigeria" class="obo-faq-item" style="border-bottom:1px solid rgba(255,255,255,0.06); padding:0.75rem 0;">
      <button class="obo-faq-question" aria-expanded="false">
-      <span  class="obo-faq-qtext">What if I don’t get interviews?</span>
+      <span class="obo-faq-qtext">What if I don’t get interviews?</span>
       <span class="obo-faq-icon" aria-hidden="true">+</span>
      </button>
-     <div  class="obo-faq-answer">
+     <div class="obo-faq-answer">
       I offer a clear satisfaction policy. If you meet the conditions laid out in the guarantee (proof of applications/interviews), you can request the agreed refund or further revisions. <br /> <br /> <br />
      </div>
     </div>
@@ -275,7 +271,7 @@
     <a href="#get-started" class="btn-primary">Get Started</a>
    </section>
    
- 
+   
    
    <script>
     (function() {
@@ -323,28 +319,13 @@
      });
     })();
    </script>
-   <div class="lock-in">
+   <div>
     <a class="lock-in" href="#top">Back to top</a>
-    <br />
    </div>
   </section>
-
-
+  
+  
  </div>
- <!-- Hamburger -->
- <button id="hamburger" style="
-    position: fixed;
-    top: 15px;
-    right: 15px;
-    font-size: 28px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    z-index: 1000;
-    color:white
-  ">
-  ☰
- </button>
  
  <!-- Dropdown Menu -->
  <div id="menu" style="
@@ -362,13 +343,16 @@
    <li><a href="/clicktoearn" style="color: white; text-decoration: none; display: block; padding: 8px;">Click To Earn</a></li>
    <li><a href="/calculator" style="color: white; text-decoration: none; display: block; padding: 8px;">Fx Calculator</a></li>
    
-
+   
   </ul>
  </div>
- <script src="/script.js" type="text/javascript" charset="utf-8"></script>
+ <script src="/components.js"></script>
+ 
  <script>
   function lookdown_1() { document.getElementById('lookdown').style.background = "brown" }
+  
   function lookdown_3() { document.getElementById('lookdown').style.display = "block" }
+  
   function lookdown_2() { document.getElementById('lookdown').innerHTML = 'Use any suitable social media button below' }
  </script>
 </body>

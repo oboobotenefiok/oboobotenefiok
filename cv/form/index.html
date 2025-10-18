@@ -23,14 +23,15 @@
 </head>
 
 <body id="top">
- <div class="container">
+  <canvas id="starfield"></canvas>
+ 
   
   <div class="cover-photo-container">
    <div class="cover-photo"></div>
   </div>
   <canvas id="starfield"></canvas>
-  <!--START HERE-->
-  <!-- =================== RÉSUMÉ / CV CHECKLIST FORM =================== -->
+  
+  
   <div>
    <center>
     <h3> 4-Step CV(Résumé) Request Form</h3>
@@ -218,11 +219,7 @@
   
   
   
-  <!-- =================== JS LOGIC =================== -->
   
-  
-  
-  <!-- =================== END FORM =================== -->
  </div>
  <!-- Payment Status Modal -->
  <div id="payment-status" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 10000; color: white; justify-content: center; align-items: center; flex-direction: column; text-align: center;">
@@ -233,21 +230,6 @@
    <div id="status-details" style="margin-top: 1rem; font-size: 0.9rem; color: #ccc;"></div>
   </div>
  </div>
- <!-- Hamburger -->
- <button id="hamburger" style="
-    position: fixed;
-    top: 15px;
-    right: 15px;
-    font-size: 28px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    z-index: 1000;
-    color:white
-  ">
-  ☰
- </button>
- 
  <!-- Dropdown Menu -->
  <div id="menu" style="
     display: none;
@@ -269,7 +251,7 @@
  </div>
  
  <script src="script.js" type="text/javascript" charset="utf-8"></script>
- <script src="/script.js" type="text/javascript" charset="utf-8"></script>
+ <script src="/components.js" type="text/javascript" charset="utf-8"></script>
 <script src="https://js.paystack.co/v1/inline.js"></script>
 <script>
 // Wait for window.load to ensure EVERYTHING is ready
