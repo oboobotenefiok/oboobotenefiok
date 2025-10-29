@@ -18,6 +18,7 @@ class NavigationComponents {
           <li><a href="/CV">Request CV (Résumé)</a></li>
           <li><a href="/clicktoearn">Click To Earn</a></li>
           <li><a href="/calculator">Fx Calculator</a></li>
+             <li><a href="https://glowfitapp.netlify.app">GlowFit</a></li>
           
         </ul>
       </div>
