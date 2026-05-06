@@ -8,4 +8,4 @@ Even though I've soiled my hands with many projects in the past, I now build alg
 
 I'm very sensitive to patterns, and I'm a good remembrancer.
 
-If you ask me to talk about Rust, I'd be so long-winded about it so caveat emptor.ions.
+If you ask me to talk about Rust, I'd be so long-winded about it so caveat emptor.
