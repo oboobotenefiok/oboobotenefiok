@@ -1,0 +1,1 @@
+#### After a long time of displaying stuff and serving as a portfolio, it now simply redirects to my GitHub. Bro was a legend. Got me some connections.
