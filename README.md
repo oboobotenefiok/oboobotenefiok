@@ -1,1 +1,1 @@
-I build algorithmic trading engines in Rust.
+Learning Rust.
