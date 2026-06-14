@@ -1,0 +1,11 @@
+[package]
+name = "oboobotenefiok"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+axum = "0.7"
+tokio = { version = "1", features = ["full"] }
+maud = "0.25"
+tower-http = { version = "0.5", features = ["fs", "trace"] }
+rand = "0.8"
