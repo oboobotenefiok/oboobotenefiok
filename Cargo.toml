@@ -1,11 +1,14 @@
+// Cargo.toml
 [package]
 name = "oboobotenefiok"
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-axum = "0.7"
-tokio = { version = "1", features = ["full"] }
-maud = "0.25"
-tower-http = { version = "0.5", features = ["fs", "trace"] }
-rand = "0.8"
+actix-web = "4.4"
+actix-rt = "2.9"
+handlebars = "4.5"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+env_logger = "0.10"
+log = "0.4"
