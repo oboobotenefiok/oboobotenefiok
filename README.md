@@ -1,55 +1,11 @@
+Hi, I'm Obot Obo, a passionate Rust Engineer and Algorithmic Trader.
 
-# Hi there, I'm Obot Obo 
+My journey began with a fascination for systems programming and financial markets, leading me to master Rust's ownership model, fearless concurrency, and zero-cost abstractions while developing a deep expertise in low-latency architectures and quantitative strategy design.
 
-**Algorithmic Trader | Rust Engineer | Medical Student**
+Today, I focus on building high-performance trading systems, custom execution engines, sophisticated risk management frameworks, and real-time data pipelines that leverage async runtimes, advanced data structures, and performance optimizations to deliver speed, safety, and reliability at scale.
 
-Building high-performance trading systems and CLI tools in Rust. Passionate about systems programming, financial markets, and solving real-world problems with code.
+Looking ahead, I am committed to pushing the boundaries of financial technology by creating even more robust, intelligent, and scalable solutions that bridge medicine, data science, and algorithmic trading, ultimately contributing innovative tools to the open-source community and beyond.
 
----
+If you're building something, I'm likely also building something too.
 
-### 🦀 What I'm working on
-- **Algorithmic trading engines** in Rust
-- High-performance CLI tools and utilities
-- Learning and contributing to the Rust ecosystem
-- Exploring the intersection of medicine, technology, and finance
-
-### 🔭 Current Focus
-- Developing robust trading bots and market analysis tools
-- Mastering systems programming with Rust
-- Building practical, performant command-line applications
-
-###  Location
-Lagos, Nigeria
-
----
-
-###  Technologies & Tools
-- **Language**: Rust (primary)
-- **Domains**: Algorithmic Trading, CLI Development, Systems Programming
-- **Tools**: Cargo, Linux/Unix, Terminal tooling
-
-###  Featured Projects
-- **[bruh](https://github.com/oboobotenefiok/bruh)** - Cure your terminal of amnesia
-- **[pkgtrace](https://github.com/oboobotenefiok/pkgtrace)** - Package overseer for Termux
-- **[cld](https://github.com/oboobotenefiok/cld)** - Upload assets to Cloudinary from CLI
-- **[vidspeed](https://github.com/oboobotenefiok/vidspeed)** - Video speed & audio manipulation tool
-- **[oboobot](https://github.com/oboobotenefiok/oboobot)** - Trading bot
-
----
-
-###  Connect with me
-- **GitHub**: [@oboobotenefiok](https://github.com/oboobotenefiok)
-- **X / Twitter**: [@oboobotenefiok](https://x.com/oboobotenefiok)
-- **Portfolio**: [oboobotenefiok.netlify.app](https://oboobotenefiok.netlify.app)
-- **LinkedIn**: [Obot Obo](https://ng.linkedin.com/in/obot-obo-788a99385)
-
----
-
-*"Rust is not just a language — it's a way of thinking about safety and performance."*
-
----
-
-[![Rust](https://img.shields.io/badge/Rust-%23000000.svg?style=for-the-badge&logo=rust&logoColor=white)](https://www.rust-lang.org/)
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/oboobotenefiok)
-
-Thanks for stopping by! Feel free to explore my repos and reach out if you'd like to collaborate. 
+🦀
